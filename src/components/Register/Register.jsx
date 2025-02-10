@@ -1,12 +1,30 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { authContext } from "../AuthProvider/AuthProvider";
 
 const Register = () => {
+    const {handleRegister} = useContext(authContext)
+
+    const handleRegisterSubmit = (e) =>{
+        e.preventDefault()
+            const form = e.target;
+            const name = form.name.value;
+            const email = form.email.value;
+            const photoUrl = form.photoUrl.value;
+            const password = form.password.value;
+            console.log(name,email,photoUrl,password)
+
+            handleRegister(email,password)
+    }
+
     return (
+        
+
         <div>
             <div className="hero bg-base-200 ">
                 <div className="hero-content flex-col lg:flex-row-reverse">
                     <div className="card bg-base-100 w-full max-w-sm p-8 shrink-0 shadow-2xl">
-                        <form className="card-body space-y-1">
+                        <form className="card-body space-y-1" onSubmit={handleRegisterSubmit}>
                             <h1 className="text-4xl font-bold">Register Now</h1>
                             <div className="form-control">
                                 <label className="label">
@@ -14,6 +32,7 @@ const Register = () => {
                                 </label>
                                 <input
                                     type="text"
+                                    name="name"
                                     placeholder="Name"
                                     className="input input-bordered"
                                     required
@@ -25,6 +44,7 @@ const Register = () => {
                                 </label>
                                 <input
                                     type="email"
+                                    name="email"
                                     placeholder="email"
                                     className="input input-bordered"
                                     required
@@ -36,6 +56,7 @@ const Register = () => {
                                 </label>
                                 <input
                                     type="text"
+                                    name="photoUrl"
                                     placeholder="Photo Url"
                                     className="input input-bordered"
                                     required
@@ -47,6 +68,7 @@ const Register = () => {
                                 </label>
                                 <input
                                     type="password"
+                                    name="password"
                                     placeholder="password"
                                     className="input input-bordered"
                                     required

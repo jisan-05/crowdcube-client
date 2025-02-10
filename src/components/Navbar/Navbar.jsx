@@ -1,6 +1,16 @@
 import { Link, NavLink } from "react-router-dom";
-import "../Navbar/Navbar.css"
+import "../Navbar/Navbar.css";
+import { useContext } from "react";
+import { authContext } from "../AuthProvider/AuthProvider";
 const Navbar = () => {
+    const { signOutUser, user } = useContext(authContext);
+
+    const handleLogOut = () => {
+        signOutUser();
+    };
+    console.log(user);
+
+    // for { links }
     const links = (
         <div className="md:flex md:gap-5">
             <li>
@@ -14,7 +24,7 @@ const Navbar = () => {
                 <NavLink to="/AddNewCampaign">Add New Campaign</NavLink>
             </li>
             <li>
-                <NavLink to="/MyCampaign">My  Campaign</NavLink>
+                <NavLink to="/MyCampaign">My Campaign</NavLink>
             </li>
             <li>
                 <NavLink to="/MyDonation">My Donations</NavLink>
@@ -23,7 +33,7 @@ const Navbar = () => {
     );
     return (
         <div>
-            <div className="navbar bg-base-100">
+            <div className="navbar bg-base-200">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <div
@@ -53,13 +63,37 @@ const Navbar = () => {
                             {links}
                         </ul>
                     </div>
-                    <Link to="/" className="btn btn-ghost text-xl">Crowdcube</Link>
+                    <Link to="/" className="btn btn-ghost text-xl">
+                        Crowdcube
+                    </Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">{links}</ul>
                 </div>
                 <div className="navbar-end">
-                    <NavLink to="/login" className="btn">Log in</NavLink>
+                    {user ? (
+                        <div className="flex items-center">
+                            <img
+                                src={user?.photoURL}
+                                alt=""
+                                className="w-12 h-12 rounded-full"
+                            />
+
+                            <button
+                                className="btn bg-blue-500 text-white"
+                                onClick={handleLogOut}
+                            >
+                                Log out
+                            </button>
+                        </div>
+                    ) : (
+                        <NavLink
+                            to="/login"
+                            className="btn bg-blue-500 text-white "
+                        >
+                            Log in
+                        </NavLink>
+                    )}
                 </div>
             </div>
         </div>
