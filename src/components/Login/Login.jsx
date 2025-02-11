@@ -1,31 +1,54 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { authContext } from "../AuthProvider/AuthProvider";
+import Swal from "sweetalert2";
 
 const Login = () => {
-    const {handleGoogleLogin,handleSignIn} = useContext(authContext)
-    
+    const { handleGoogleLogin, handleSignIn } = useContext(authContext);
 
-    const handleLogin = (e) =>{
-        e.preventDefault()
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    const handleLogin = (e) => {
+        e.preventDefault();
         const email = e.target.email.value;
         const password = e.target.password.value;
-        console.log(email,password)
-        handleSignIn(email,password)
-
-    }
+        console.log(email, password);
+        handleSignIn(email, password).then((res) => {
+            navigate(location.state.from);
+        });
+    };
 
     const handleGoogle = () => {
-        handleGoogleLogin()
-        
-    }
+        handleGoogleLogin().then((res) => {
+            navigate(location.state.from)
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "top-center",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.onmouseenter = Swal.stopTimer;
+                    toast.onmouseleave = Swal.resumeTimer;
+                },
+            });
+            Toast.fire({
+                icon: "success",
+                title: "Signed in successfully",
+            });
+        });
+    };
 
     return (
         <div>
             <div className="hero bg-base-200 ">
                 <div className="hero-content flex-col lg:flex-row-reverse">
                     <div className="card bg-base-100 w-full max-w-sm p-8 shrink-0 shadow-2xl">
-                        <form className="card-body space-y-1" onSubmit={handleLogin}>
+                        <form
+                            className="card-body space-y-1"
+                            onSubmit={handleLogin}
+                        >
                             <h1 className="text-4xl font-bold">Login now!</h1>
                             <div className="form-control">
                                 <label className="label">
@@ -59,12 +82,22 @@ const Login = () => {
                             <div className="divider">OR</div>
                         </form>
                         <div className="space-y-5 px-8">
-                            <button onClick={handleGoogle} className="btn bg-orange-600 text-white w-full">
+                            <button
+                                onClick={handleGoogle}
+                                className="btn bg-orange-600 text-white w-full"
+                            >
                                 Login With Google
                             </button>
-                            <p className="text-center">Dont Have an Account? <Link className="text-blue-700 font-bold" to='/register'>Sign Up</Link></p>
+                            <p className="text-center">
+                                Dont Have an Account?{" "}
+                                <Link
+                                    className="text-blue-700 font-bold"
+                                    to="/register"
+                                >
+                                    Sign Up
+                                </Link>
+                            </p>
                         </div>
-                        
                     </div>
                 </div>
             </div>

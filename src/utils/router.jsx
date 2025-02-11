@@ -10,6 +10,7 @@ import MyDonation from "../components/MyDonation/MyDonation";
 import ErrorPage from "../components/ErrorPage/error-page";
 import Login from "../components/Login/Login";
 import Register from "../components/Register/Register";
+import PrivetRoute from "../components/PrivetRoute/PrivetRoute";
 
 
   const router = createBrowserRouter([
@@ -37,7 +38,7 @@ import Register from "../components/Register/Register";
         },
         {
             path:"MyDonation",
-            element:<MyDonation></MyDonation>
+            element:<PrivetRoute><MyDonation></MyDonation></PrivetRoute>
         },
         {
             path:"login",

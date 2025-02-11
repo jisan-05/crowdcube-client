@@ -1,30 +1,54 @@
-import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { authContext } from "../AuthProvider/AuthProvider";
 
+
 const Register = () => {
-    const {handleRegister} = useContext(authContext)
+    const { handleRegister, handleGoogleLogin, manageProfile } =
+        useContext(authContext);
+    const [error, setError] = useState("");
+    const location = useLocation();
+    const navigate = useNavigate();
 
-    const handleRegisterSubmit = (e) =>{
-        e.preventDefault()
-            const form = e.target;
-            const name = form.name.value;
-            const email = form.email.value;
-            const photoUrl = form.photoUrl.value;
-            const password = form.password.value;
-            console.log(name,email,photoUrl,password)
+    const handleRegisterSubmit = (e) => {
+        e.preventDefault();
+        setError("");
+        const form = e.target;
+        const name = form.name.value;
+        const email = form.email.value;
+        const image = form.image.value;
+        const password = form.password.value;
+        console.log(name, email, image, password);
 
-            handleRegister(email,password)
-    }
+        if (!/^(?=.*[a-z])(?=.*[A-Z]).{6,}$/.test(password)) {
+            setError(
+                "Password Must Have 1 UpperCase 1 LowerCase and Number Combination"
+            );
+            return;
+        }
+
+        handleRegister(email, password).then((res) => {
+            manageProfile(name, image);
+
+            navigate(location.state.from)
+        });
+    };
+    // google login
+    const handleGoogle = () => {
+        handleGoogleLogin().then((res) => {
+            navigate(location.state.from);
+        });
+    };
 
     return (
-        
-
         <div>
             <div className="hero bg-base-200 ">
                 <div className="hero-content flex-col lg:flex-row-reverse">
                     <div className="card bg-base-100 w-full max-w-sm p-8 shrink-0 shadow-2xl">
-                        <form className="card-body space-y-1" onSubmit={handleRegisterSubmit}>
+                        <form
+                            className="card-body space-y-1"
+                            onSubmit={handleRegisterSubmit}
+                        >
                             <h1 className="text-4xl font-bold">Register Now</h1>
                             <div className="form-control">
                                 <label className="label">
@@ -52,11 +76,13 @@ const Register = () => {
                             </div>
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text">Photo Url</span>
+                                    <span className="label-text">
+                                        Photo Url
+                                    </span>
                                 </label>
                                 <input
                                     type="text"
-                                    name="photoUrl"
+                                    name="image"
                                     placeholder="Photo Url"
                                     className="input input-bordered"
                                     required
@@ -74,6 +100,9 @@ const Register = () => {
                                     required
                                 />
                             </div>
+                            <div>
+                                <p className="text-red-500">{error}</p>
+                            </div>
                             <div className="form-control mt-6">
                                 <button className="btn btn-primary w-full">
                                     Register
@@ -82,7 +111,10 @@ const Register = () => {
                             <div className="divider">OR</div>
                         </form>
                         <div className="space-y-5 px-8">
-                            <button className="btn bg-orange-600 text-white w-full">
+                            <button
+                                onClick={handleGoogle}
+                                className="btn bg-orange-600 text-white w-full"
+                            >
                                 Login With Google
                             </button>
                             <p className="text-center">
