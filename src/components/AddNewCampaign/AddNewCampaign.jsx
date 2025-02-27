@@ -1,6 +1,12 @@
+import { useContext } from "react";
 import Swal from "sweetalert2";
+import { authContext } from "../AuthProvider/AuthProvider";
 
 const AddNewCampaign = () => {
+
+    const {user} = useContext(authContext)
+    const userEmail = user?.email
+
     const handleSubmit = (e) => {
         e.preventDefault();
         const image = e.target.image.value;
@@ -14,6 +20,7 @@ const AddNewCampaign = () => {
             campaignType,
             amount,
             Deadline,
+            userEmail
         };
         fetch("http://localhost:5000/campaigns", {
             method: "POST",
@@ -80,6 +87,7 @@ const AddNewCampaign = () => {
                                 </label>
                                 <select
                                     className="select w-full max-w-xs"
+                                    
                                     name="campaignType"
                                 >
                                     <option disabled selected>
