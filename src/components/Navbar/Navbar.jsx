@@ -9,6 +9,7 @@ const Navbar = () => {
         signOutUser();
     };
     console.log(user);
+    // console.log("Photo URL is ", user?.photoURL)
 
     // for { links }
     const links = (

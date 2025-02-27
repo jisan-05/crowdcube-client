@@ -8,26 +8,31 @@ const AddNewCampaign = () => {
         const campaignType = e.target.campaignType.value;
         const amount = e.target.amount.value;
         const Deadline = e.target.Deadline.value;
-        const campaignData = {image, campaignTitle, campaignType, amount, Deadline};
-        fetch("http://localhost:5000/campaigns",{
-            method: 'POST',
+        const campaignData = {
+            image,
+            campaignTitle,
+            campaignType,
+            amount,
+            Deadline,
+        };
+        fetch("http://localhost:5000/campaigns", {
+            method: "POST",
             headers: {
-                'Content-Type': 'application/json'
+                "Content-Type": "application/json",
             },
-            body: JSON.stringify(campaignData)
-
+            body: JSON.stringify(campaignData),
         })
-        .then(res => res.json())
-        .then(data => {
-            if(data.insertedId){
-                Swal.fire({
-                    title: "Campaign Added Successfully",
-                    icon: "success",
-                    draggable: true
-                  })
-                e.target.reset()
-            }
-        })
+            .then((res) => res.json())
+            .then((data) => {
+                if (data.insertedId) {
+                    Swal.fire({
+                        title: "Campaign Added Successfully",
+                        icon: "success",
+                        draggable: true,
+                    });
+                    e.target.reset();
+                }
+            });
     };
 
     return (
@@ -73,7 +78,10 @@ const AddNewCampaign = () => {
                                         Campaign type
                                     </span>
                                 </label>
-                                <select className="select w-full max-w-xs" name="campaignType">
+                                <select
+                                    className="select w-full max-w-xs"
+                                    name="campaignType"
+                                >
                                     <option disabled selected>
                                         Select Campaign type
                                     </option>

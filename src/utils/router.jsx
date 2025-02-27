@@ -1,6 +1,4 @@
-import {
-    createBrowserRouter,
-  } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "../components/MainLayout/MainLayout";
 import AllCampaign from "../components/AllCampaign/AllCampaign";
 import Home from "../components/Home/Home";
@@ -11,49 +9,74 @@ import ErrorPage from "../components/ErrorPage/error-page";
 import Login from "../components/Login/Login";
 import Register from "../components/Register/Register";
 import PrivetRoute from "../components/PrivetRoute/PrivetRoute";
+import CampaignCard from "../components/CampaignCard/CampaignCard";
+import Details from "../components/Details/Details";
 
-
-  const router = createBrowserRouter([
+const router = createBrowserRouter([
     {
-      path: "/",
-      element: <MainLayout></MainLayout>,
-      errorElement: <ErrorPage />,
-      children:[
-        {
-            path:"/",
-            element:<Home></Home>
-        }
-        ,
-        {
-            path:"AllCampaign",
-            element:<AllCampaign></AllCampaign>
-        },
-        {
-            path:"AddNewCampaign",
-            element:<AddNewCampaign></AddNewCampaign>
-        },
-        {
-            path:"MyCampaign",
-            element:<MyCampaign></MyCampaign>
-        },
-        {
-            path:"MyDonation",
-            element:<PrivetRoute><MyDonation></MyDonation></PrivetRoute>
-        },
-        {
-            path:"login",
-            element:<Login></Login>
-        },
-        {
-            path:"register",
-            element:<Register></Register>
-        }
+        path: "/",
+        element: <MainLayout></MainLayout>,
+        errorElement: <ErrorPage />,
+        children: [
+            {
+                path: "/",
+                element: <Home></Home>,
+                loader: () => fetch("http://localhost:5000/campaigns"),
+            },
+            {
+                path: "AllCampaign",
+                element: <AllCampaign></AllCampaign>,
+                loader: () => fetch("http://localhost:5000/campaigns"),
+            },
+            {
+                path: "AddNewCampaign",
+                element: <AddNewCampaign></AddNewCampaign>,
+            },
+            {
+                path: "MyCampaign",
+                element: (
+                    <PrivetRoute>
+                        <MyCampaign></MyCampaign>
+                    </PrivetRoute>
+                ),
+            },
+            {
+                path: "MyDonation",
+                element: (
+                    <PrivetRoute>
+                        <MyDonation></MyDonation>
+                    </PrivetRoute>
+                ),
+            },
+            {
+                path: "login",
+                element: <Login></Login>,
+            },
+            {
+                path: "register",
+                element: <Register></Register>,
+            },
+            {
+                path: "campaignCard",
+                element: <CampaignCard></CampaignCard>,
+            },
+            {
+                path: "details/:id",
+                element: (
+                    <PrivetRoute>
+                        <Details></Details>
+                    </PrivetRoute>
+                ),
+                loader: async ({ params }) => {
+                    const res = await fetch(`http://localhost:5000/campaigns`);
+                    const data = await res.json();
 
-      ]
+                    const singleData = data.find((d) => d._id === params.id);
+                    return singleData;
+                },
+            },
+        ],
     },
+]);
 
-
-
-  ]);
-
-  export default router;
+export default router;
