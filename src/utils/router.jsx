@@ -11,6 +11,7 @@ import Register from "../components/Register/Register";
 import PrivetRoute from "../components/PrivetRoute/PrivetRoute";
 import CampaignCard from "../components/CampaignCard/CampaignCard";
 import Details from "../components/Details/Details";
+import UpdateCampaign from "../components/UpdateCampaign/UpdateCampaign";
 
 const router = createBrowserRouter([
     {
@@ -59,6 +60,11 @@ const router = createBrowserRouter([
             {
                 path: "campaignCard",
                 element: <CampaignCard></CampaignCard>,
+            },
+            {
+                path:"updateCampaign/:id",
+                element:<UpdateCampaign></UpdateCampaign>,
+                loader: ({params}) => fetch(`http://localhost:5000/updateCampaigns/${params.id}`)
             },
             {
                 path: "details/:id",

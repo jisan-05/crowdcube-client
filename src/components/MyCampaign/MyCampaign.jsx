@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { authContext } from "../AuthProvider/AuthProvider";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const MyCampaign = () => {
     const { user } = useContext(authContext);
@@ -60,7 +61,7 @@ const MyCampaign = () => {
                                 <td>{camp.amount}</td>
                                 <td>
                                     <button className="btn btn-error text-white" onClick={()=> handleDelete(camp._id)}>Delete</button>
-                                    <button className="mx-3 btn bg-blue-600 text-white">Edit</button>
+                                    <Link to={`/UpdateCampaign/${camp._id}`}><button className="mx-3 btn bg-blue-600 text-white">Edit</button></Link>
                                 </td>
                             </tr>
                         ))}
