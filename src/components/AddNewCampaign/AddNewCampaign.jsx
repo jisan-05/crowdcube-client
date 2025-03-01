@@ -53,7 +53,7 @@ const AddNewCampaign = () => {
                         <form className="card-body " onSubmit={handleSubmit}>
                             <div className="form-control ">
                                 <label className="label my-2 block ">
-                                    <span className="label-text text-xl text-black">
+                                    <span className="label-text text-xl ">
                                         Image Url
                                     </span>
                                 </label>
@@ -67,7 +67,7 @@ const AddNewCampaign = () => {
                             </div>
                             <div className="form-control">
                                 <label className="label my-2 block ">
-                                    <span className="label-text text-xl text-black">
+                                    <span className="label-text text-xl ">
                                         Campaign title
                                     </span>
                                 </label>
@@ -81,7 +81,7 @@ const AddNewCampaign = () => {
                             </div>
                             <div className="">
                                 <label className="label my-2 block ">
-                                    <span className="label-text text-xl text-black ">
+                                    <span className="label-text text-xl  ">
                                         Campaign type
                                     </span>
                                 </label>
@@ -105,7 +105,7 @@ const AddNewCampaign = () => {
                             </div>
                             <div className="form-control">
                                 <label className="label my-2 block ">
-                                    <span className="label-text text-xl text-black">
+                                    <span className="label-text text-xl ">
                                         Minimum donation amount
                                     </span>
                                 </label>
@@ -119,7 +119,7 @@ const AddNewCampaign = () => {
                             </div>
                             <div className="form-control">
                                 <label className="label my-2 block ">
-                                    <span className="label-text text-xl text-black">
+                                    <span className="label-text text-xl ">
                                         Deadline
                                     </span>
                                 </label>
