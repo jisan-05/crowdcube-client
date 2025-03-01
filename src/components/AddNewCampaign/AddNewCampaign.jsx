@@ -47,7 +47,7 @@ const AddNewCampaign = () => {
             <h2 className="text-center text-3xl my-5 font-semibold">
                 Add New Campaign
             </h2>
-            <div className="hero bg-base-200 ">
+            <div className="hero">
                 <div className="hero-content flex-col lg:flex-row-reverse">
                     <div className="card bg-base-100 w-full shrink-0 shadow-2xl">
                         <form className="card-body " onSubmit={handleSubmit}>
