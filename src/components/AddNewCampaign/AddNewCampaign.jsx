@@ -112,7 +112,7 @@ const AddNewCampaign = () => {
                                 <input
                                     type="text"
                                     name="amount"
-                                    placeholder="Write Description"
+                                    placeholder="Donate Amount"
                                     className="input input-bordered"
                                     required
                                 />
