@@ -30,7 +30,7 @@ const Details = () => {
             .then((data) => {
                 if (data.insertedId) {
                     Swal.fire({
-                        title: "Campaign Added Successfully",
+                        title: "Donate Successfully",
                         icon: "success",
                         draggable: true,
                     });
