@@ -4,10 +4,9 @@ import { authContext } from "../AuthProvider/AuthProvider";
 import { useNavigate } from "react-router-dom";
 
 const AddNewCampaign = () => {
-
-    const navigate = useNavigate()
-    const {user} = useContext(authContext)
-    const userEmail = user?.email
+    const navigate = useNavigate();
+    const { user } = useContext(authContext);
+    const userEmail = user?.email;
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -22,9 +21,9 @@ const AddNewCampaign = () => {
             campaignType,
             amount,
             Deadline,
-            userEmail
+            userEmail,
         };
-        fetch("http://localhost:5000/campaigns", {
+        fetch("https://croudcube-server.onrender.com/campaigns", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -40,7 +39,7 @@ const AddNewCampaign = () => {
                         draggable: true,
                     });
                     e.target.reset();
-                    navigate("/MyCampaign")
+                    navigate("/MyCampaign");
                 }
             });
     };
@@ -90,7 +89,6 @@ const AddNewCampaign = () => {
                                 </label>
                                 <select
                                     className="select w-full max-w-xs"
-                                    
                                     name="campaignType"
                                 >
                                     <option disabled selected>

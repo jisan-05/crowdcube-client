@@ -4,8 +4,7 @@ import { authContext } from "../AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
 
 const Details = () => {
-
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     const singleData = useLoaderData();
     const { _id, Deadline, amount, campaignType, campaignTitle, image } =
@@ -14,7 +13,6 @@ const Details = () => {
     const donateEmail = user.email;
     const handleDonate = () => {
         const donateData = {
-        
             Deadline,
             amount,
             campaignType,
@@ -22,7 +20,7 @@ const Details = () => {
             image,
             donateEmail,
         };
-        fetch(`http://localhost:5000/campaignsDonate`, {
+        fetch(`https://croudcube-server.onrender.com/campaignsDonate`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -37,7 +35,7 @@ const Details = () => {
                         icon: "success",
                         draggable: true,
                     });
-                    navigate("/MyDonation")
+                    navigate("/MyDonation");
                 }
             });
     };

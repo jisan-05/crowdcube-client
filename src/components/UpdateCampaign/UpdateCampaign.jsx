@@ -24,7 +24,6 @@ const UpdateCampaign = () => {
         const amount = e.target.amount.value;
         const Deadline = e.target.Deadline.value;
         const UpdateCampaignData = {
-            
             image,
             campaignTitle,
             campaignType,
@@ -32,7 +31,7 @@ const UpdateCampaign = () => {
             Deadline,
             userEmail,
         };
-        fetch(`http://localhost:5000/updateCampaigns/${_id}`, {
+        fetch(`https://croudcube-server.onrender.com/updateCampaigns/${_id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -48,9 +47,7 @@ const UpdateCampaign = () => {
                         icon: "success",
                         draggable: true,
                     });
-                    
                 }
-                
             });
     };
 
