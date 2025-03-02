@@ -74,14 +74,17 @@ const Navbar = () => {
                 <div className="navbar-end">
                     {user ? (
                         <div className="flex items-center">
-                            <img
-                                src={user?.photoURL}
-                                alt=""
-                                className="w-12 h-12 rounded-full"
-                            />
+                            {user.photoURL && (
+                                <img
+                                    src={user?.photoURL}
+                                    alt=""
+                                    className="w-12 h-12 rounded-full"
+                                />
+                            )}
+                            
 
                             <button
-                                className="btn bg-blue-500 text-white"
+                                className="btn bg-blue-500 text-white ml-2"
                                 onClick={handleLogOut}
                             >
                                 Log out

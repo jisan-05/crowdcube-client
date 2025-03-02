@@ -1,9 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 import { authContext } from "../AuthProvider/AuthProvider";
+import { useNavigate } from "react-router-dom";
 
 const MyDonation = () => {
     const { user } = useContext(authContext);
     const [donate, setDonate] = useState([]);
+    
 
     useEffect(() => {
         fetch(`http://localhost:5000/campaignsDonate/${user.email}`)
@@ -14,7 +16,7 @@ const MyDonation = () => {
 
     return (
         <div>
-            <h3 className="text-center text-2xl">My Donation</h3>
+            <h3 className="text-center text-3xl font-semibold m-5">My Donation List</h3>
             {donate && (
                 <div className="overflow-x-auto">
                     <table className="table">

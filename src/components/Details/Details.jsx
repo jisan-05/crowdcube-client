@@ -1,9 +1,12 @@
 import { useContext } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { authContext } from "../AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
 
 const Details = () => {
+
+    const navigate = useNavigate()
+
     const singleData = useLoaderData();
     const { _id, Deadline, amount, campaignType, campaignTitle, image } =
         singleData;
@@ -11,7 +14,7 @@ const Details = () => {
     const donateEmail = user.email;
     const handleDonate = () => {
         const donateData = {
-            _id,
+        
             Deadline,
             amount,
             campaignType,
@@ -34,6 +37,7 @@ const Details = () => {
                         icon: "success",
                         draggable: true,
                     });
+                    navigate("/MyDonation")
                 }
             });
     };

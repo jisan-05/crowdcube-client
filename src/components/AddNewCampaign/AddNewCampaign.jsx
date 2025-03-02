@@ -1,9 +1,11 @@
 import { useContext } from "react";
 import Swal from "sweetalert2";
 import { authContext } from "../AuthProvider/AuthProvider";
+import { useNavigate } from "react-router-dom";
 
 const AddNewCampaign = () => {
 
+    const navigate = useNavigate()
     const {user} = useContext(authContext)
     const userEmail = user?.email
 
@@ -38,6 +40,7 @@ const AddNewCampaign = () => {
                         draggable: true,
                     });
                     e.target.reset();
+                    navigate("/MyCampaign")
                 }
             });
     };
