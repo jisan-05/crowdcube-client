@@ -8,7 +8,7 @@ Crowdcube is a MERN-based crowdfunding platform where users can raise funds for 
 
 - 🌐 **Live Website**: [https://croudcube.netlify.app/]
 - 💻 **Client GitHub Repo**: [https://github.com/jisan-05/crowdcube-client]
-- 🖥️ **Server GitHub Repo**: [github.com/your-username/crowdcube-server]
+- 🖥️ **Server GitHub Repo**: [https://github.com/your-username/crowdcube-server]
 
 ---
 
