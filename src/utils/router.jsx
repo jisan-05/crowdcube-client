@@ -22,14 +22,12 @@ const router = createBrowserRouter([
             {
                 path: "/",
                 element: <Home></Home>,
-                loader: () =>
-                    fetch("https://croudcube-server.onrender.com/campaigns"),
+                loader: () => fetch("http://localhost:5000/campaigns"),
             },
             {
                 path: "AllCampaign",
                 element: <AllCampaign></AllCampaign>,
-                loader: () =>
-                    fetch("https://croudcube-server.onrender.com/campaigns"),
+                loader: () => fetch("http://localhost:5000/campaigns"),
             },
             {
                 path: "AddNewCampaign",
@@ -67,9 +65,7 @@ const router = createBrowserRouter([
                 path: "updateCampaign/:id",
                 element: <UpdateCampaign></UpdateCampaign>,
                 loader: ({ params }) =>
-                    fetch(
-                        `https://croudcube-server.onrender.com/updateCampaigns/${params.id}`
-                    ),
+                    fetch(`http://localhost:5000/updateCampaigns/${params.id}`),
             },
             {
                 path: "details/:id",
@@ -79,9 +75,7 @@ const router = createBrowserRouter([
                     </PrivetRoute>
                 ),
                 loader: async ({ params }) => {
-                    const res = await fetch(
-                        `https://croudcube-server.onrender.com/campaigns`
-                    );
+                    const res = await fetch(`http://localhost:5000/campaigns`);
                     const data = await res.json();
 
                     const singleData = data.find((d) => d._id === params.id);

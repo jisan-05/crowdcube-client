@@ -56,7 +56,7 @@ const AuthProvider = ({ children }) => {
             }
             setLoading(false);
 
-            console.log(currentUser);
+            // console.log(currentUser);
 
             return () => unsubscribe();
         });
@@ -64,7 +64,7 @@ const AuthProvider = ({ children }) => {
 
     return (
         <div>
-            <authContext.Provider value={authInfo}>
+            <authContext.Provider value={authInfo} >
                 {children}
             </authContext.Provider>
         </div>

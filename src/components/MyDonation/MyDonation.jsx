@@ -7,9 +7,7 @@ const MyDonation = () => {
     const [donate, setDonate] = useState([]);
 
     useEffect(() => {
-        fetch(
-            `https://croudcube-server.onrender.com/campaignsDonate/${user.email}`
-        )
+        fetch(`http://localhost:5000/campaignsDonate/${user.email}`)
             .then((res) => res.json())
             .then((data) => setDonate(data));
     }, [user]);

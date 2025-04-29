@@ -31,7 +31,7 @@ const UpdateCampaign = () => {
             Deadline,
             userEmail,
         };
-        fetch(`https://croudcube-server.onrender.com/updateCampaigns/${_id}`, {
+        fetch(`http://localhost:5000/updateCampaigns/${_id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -98,10 +98,10 @@ const UpdateCampaign = () => {
                                 </label>
                                 <select
                                     className="select w-full max-w-xs"
-                                    defaultValue={campaignType}
                                     name="campaignType"
+                                    defaultValue=""
                                 >
-                                    <option disabled selected>
+                                    <option disabled value="">
                                         Select Campaign type
                                     </option>
                                     <option value="personal issue">

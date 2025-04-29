@@ -18,7 +18,7 @@ const Register = () => {
         const email = form.email.value;
         const image = form.image.value;
         const password = form.password.value;
-        console.log(name, email, image, password);
+        // console.log(name, email, image, password);
 
         if (!/^(?=.*[a-z])(?=.*[A-Z]).{6,}$/.test(password)) {
             setError(

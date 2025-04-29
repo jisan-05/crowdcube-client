@@ -8,14 +8,14 @@ const MyCampaign = () => {
     const { user } = useContext(authContext);
     const [campaign, setCampaign] = useState([]);
     useEffect(() => {
-        fetch(`https://croudcube-server.onrender.com/campaigns/${user?.email}`)
+        fetch(`http://localhost:5000/campaigns/${user?.email}`)
             .then((res) => res.json())
             .then((data) => setCampaign(data));
     }, [user?.email]);
     console.log("campaign data", campaign);
 
     const handleDelete = (id) => {
-        fetch(`https://croudcube-server.onrender.com/campaign/${id}`, {
+        fetch(`http://localhost:5000/campaign/${id}`, {
             method: "DELETE",
         })
             .then((res) => res.json())

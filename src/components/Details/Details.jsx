@@ -20,7 +20,7 @@ const Details = () => {
             image,
             donateEmail,
         };
-        fetch(`https://croudcube-server.onrender.com/campaignsDonate`, {
+        fetch(`http://localhost:5000/campaignsDonate`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
